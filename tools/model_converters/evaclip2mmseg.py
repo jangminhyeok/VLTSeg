@@ -37,6 +37,7 @@ def convert_eva_clip(ckpt):
                 if key_list[2] == 'proj':
                     key_list[2] = 'projection'
 
+            # These keys are only needed for the flag final_norm
             elif key_list[1] == 'norm':
                 key_list[1] = 'ln1'
 

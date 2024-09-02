@@ -29,7 +29,7 @@ cd mmpretrain
 mim install -e .
 cd ..
 
-git clone -b main https://github.com/open-mmlab/mmsegmentation.git
+git clone -b make-mask2former-slide-compatible https://github.com/Joris-Kuehl-TU-Berlin/mmsegmentation.git
 cd mmsegmentation
 mim install -e .
 cd ..

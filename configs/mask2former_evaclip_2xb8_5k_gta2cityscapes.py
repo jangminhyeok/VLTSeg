@@ -1,16 +1,16 @@
 _base_ = [
     '_base_/models/mask2former.py',
-    '_base_/datasets/train/cityscapes_1024x1024.py',
-    '_base_/datasets/test/real2cityscapes.py',
-    '_base_/schedules/schedule_20k.py',
+    '_base_/datasets/train/gta_512x512.py',
+    '_base_/datasets/test/synth2cityscapes.py',
+    '_base_/schedules/schedule_5k.py',
     '_base_/default_runtime.py'
 ]
 
-crop_size = (1024, 1024)
-stride_size = (768,768)
+crop_size = (512, 512)
+stride_size = (426,426)
 pretrained = '/work/kuehl/checkpoints/converted_EVA02_CLIP_L_psz14_s4B.pth'
 num_gpus = 2
-num_samples_per_gpu_train = 4
+num_samples_per_gpu_train = 8
 num_workers_per_gpu_train = 1
 num_samples_per_gpu_test = 2
 num_workers_per_gpu_test = 1

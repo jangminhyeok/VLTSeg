@@ -7,7 +7,10 @@ import vltseg
 from mmseg.registry import MODELS
 from mmseg.utils import register_all_modules
 
-register_all_modules(True) # This sets the default registry to mmseg::model (instead of mmengine::model), which is where SegDataPreProcessor is found
+# This sets the default registry to mmseg::model (instead of mmengine::model), which is where SegDataPreProcessor is found
+# This is not necessary when using the test script, since default_runtime.py includes default_scope = 'mmseg'
+# In this file, we are only building the 'model' part of the config, so that information is lost
+register_all_modules(True)
 
 def rsz(input, l):
     transform = torchvision.transforms.Resize((l, l))
@@ -28,4 +31,4 @@ with torch.no_grad():
     result = model.predict(image)
     predictions = result[0].seg_logits.data
 
-# Next, try to match the parameters with those from the papers.
+print(str(result))
