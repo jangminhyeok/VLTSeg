@@ -68,7 +68,7 @@ class AttentionWithRoPE(BaseModule):
         self.qkv = nn.Linear(embed_dims, embed_dims * 3, bias=qkv_bias)
 
         self.attn_drop = nn.Dropout(attn_drop)
-        self.inner_attn_norm = build_norm_layer(norm_cfg, embed_dims)
+        # self.inner_attn_norm = build_norm_layer(norm_cfg, embed_dims)
         self.proj = nn.Linear(embed_dims, embed_dims, bias=proj_bias)
         self.proj_drop = nn.Dropout(proj_drop)
         self.xattn = xattn
@@ -109,7 +109,7 @@ class AttentionWithRoPE(BaseModule):
                 scale=self.scale,
             )
             x = x.reshape(B, N, -1)
-            x = self.inner_attn_norm(x)
+            # x = self.inner_attn_norm(x)
             x = self.proj(x)
             x = self.proj_drop(x)
         else:
@@ -120,7 +120,7 @@ class AttentionWithRoPE(BaseModule):
             attn = self.attn_drop(attn)
 
             x = (attn @ v).transpose(1, 2).reshape(B, N, -1)
-            x = self.inner_attn_norm(x)
+            # x = self.inner_attn_norm(x)
             x = self.proj(x)
             x = self.proj_drop(x)
         return x
@@ -355,6 +355,30 @@ class ViTEVA02WithXAttn(VisionTransformer):
             _layer_cfg.update(layer_cfgs[i])
             self.layers.append(EVA02EndcoderLayer(**_layer_cfg))
 
+        # Initialize FPN
+        if kwargs.get("patch_size", 16) in [14,16]:
+            self.fpn1 = nn.Sequential(
+                nn.ConvTranspose2d(self.embed_dims, self.embed_dims, kernel_size=2, stride=2),
+                nn.SyncBatchNorm(self.embed_dims),
+                nn.GELU(),
+                nn.ConvTranspose2d(self.embed_dims, self.embed_dims, kernel_size=2, stride=2),
+            )
+
+            self.fpn2 = nn.ConvTranspose2d(self.embed_dims, self.embed_dims, kernel_size=2, stride=2)
+
+            self.fpn3 = nn.Identity()
+
+            self.fpn4 = nn.MaxPool2d(kernel_size=2, stride=2)
+        elif kwargs.get("patch_size", 16) == 8:
+            self.fpn1 = nn.ConvTranspose2d(self.embed_dims, self.embed_dims, kernel_size=2, stride=2)
+
+            self.fpn2 = nn.Identity()
+
+            self.fpn3 = nn.MaxPool2d(kernel_size=2, stride=2)
+
+            self.fpn4 = nn.MaxPool2d(kernel_size=4, stride=4)
+
+
     def forward(self, x):
         B = x.shape[0]
         x, patch_resolution = self.patch_embed(x)
@@ -384,4 +408,7 @@ class ViTEVA02WithXAttn(VisionTransformer):
             if i in self.out_indices:
                 outs.append(self._format_output(x, patch_resolution))
 
+        ops = [self.fpn1, self.fpn2, self.fpn3, self.fpn4]
+        for i in range(len(outs)):
+            outs[i] = ops[i](outs[i])
         return tuple(outs)

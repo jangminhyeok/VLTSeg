@@ -1,8 +1,8 @@
 _base_ = [
     '_base_/models/mask2former.py',
-    '_base_/datasets/train/gta_512x512.py',
+    '_base_/datasets/train/synthia_512x512.py',
     '_base_/datasets/test/synth2cityscapes.py',
-    '_base_/schedules/schedule_5k.py',
+    '_base_/schedules/schedule_1k_frozen.py',
     '_base_/default_runtime.py'
 ]
 
@@ -23,7 +23,6 @@ model = dict(
         arch='l',
         img_size=512,
         patch_size=14,
-        drop_path_rate=0.15, # Does this have a positive impact?
         xattn=True,
         sub_ln=True,
         final_norm=False,

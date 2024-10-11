@@ -2,7 +2,7 @@ _base_ = [
     '_base_/models/mask2former.py',
     '_base_/datasets/train/gta_512x512.py',
     '_base_/datasets/test/synth2cityscapes.py',
-    '_base_/schedules/schedule_5k.py',
+    '_base_/schedules/schedule_1k_frozen.py',
     '_base_/default_runtime.py'
 ]
 
