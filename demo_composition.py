@@ -16,7 +16,7 @@ def rsz(input, l):
     transform = torchvision.transforms.Resize((l, l))
     return transform(input)
 
-config = "configs/demo_composition_config.py"
+config = "configs/mask2former_evaclip_2xb8_5k_gta2cityscapes.py"
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 model = MODELS.build(Config.fromfile(config).model)
@@ -27,7 +27,7 @@ if device == 'cpu':
 
 
 with torch.no_grad():
-    image = read_image('images/gray-dog-closeup.jpg', mode=ImageReadMode.RGB).to(torch.float32).to(device).unsqueeze(0)
+    image = read_image('images/CLIP.png', mode=ImageReadMode.RGB).to(torch.float32).to(device).unsqueeze(0)
     result = model.predict(image)
     predictions = result[0].seg_logits.data
 
