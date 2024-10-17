@@ -5,9 +5,9 @@ val_interval = 250          # interval (number of iterations) for evaluation and
 embed_multi = dict(lr_mult=1.0, decay_mult=0.0)
 custom_keys = {
     'backbone': dict(lr_mult=0.0, decay_mult=0.0),
-    'decode_head.query_embed': embed_multi,
-    'decode_head.query_feat': embed_multi,
-    'decode_head.level_embed': embed_multi
+    'query_embed': embed_multi,
+    'query_feat': embed_multi,
+    'level_embed': embed_multi,
 }
 
 optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05, eps=1e-8, betas=(0.9, 0.999))

@@ -7,22 +7,20 @@ backbone_norm_multi = dict(lr_mult=0.1, decay_mult=0.0)
 embed_multi = dict(lr_mult=1.0, decay_mult=0.0)
 custom_keys = {
     'backbone': dict(lr_mult=0.1, decay_mult=1.0),
-    # OpenMMLab applies the most specific (=longest) custom_keys first. If we simply used '.norm.' etc., then 'backbone' would be more specific.
-    # Thus, we need to be roughly this specific to hit all norm layers in the backbone.
-    # The alternative is to abbreviate 'backbone' by 'backb'.
-    '.norm.weight': backbone_norm_multi,
-    '.norm.bias': backbone_norm_multi,
-    '.norm1.weight': backbone_norm_multi,
-    '.norm1.bias': backbone_norm_multi,
-    '.norm2.weight': backbone_norm_multi,
-    '.norm2.bias': backbone_norm_multi,
-    '.inner_attn_norm.weight': backbone_norm_multi,
-    '.inner_attn_norm.bias': backbone_norm_multi,
+    'backbone.norm': backbone_norm_multi,
     'backbone.pos_embed': backbone_embed_multi,
-    'decode_head.query_embed': embed_multi,
-    'decode_head.query_feat': embed_multi,
-    'decode_head.level_embed': embed_multi
+    'query_embed': embed_multi,
+    'query_feat': embed_multi,
+    'level_embed': embed_multi,
 }
+custom_keys.update({
+    f'backbone.blocks.{block_id}.norm1': backbone_norm_multi
+    for block_id in range(24)
+})
+custom_keys.update({
+    f'backbone.blocks.{block_id}.norm2': backbone_norm_multi
+    for block_id in range(24)
+})
 
 optimizer = dict(type='AdamW', lr=1e-4, weight_decay=0.05, eps=1e-8, betas=(0.9, 0.999))
 optim_wrapper = dict(

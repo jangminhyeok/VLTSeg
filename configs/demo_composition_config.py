@@ -8,7 +8,7 @@ _base_ = [
 
 crop_size = (1024, 1024)
 stride_size = (768,768)
-pretrained = '/work/kuehl/checkpoints/converted_EVA02_CLIP_L_psz14_s4B.pth'
+pretrained = '/work/kuehl/checkpoints/EVA02_CLIP_L_psz14_s4B.pth'
 num_gpus = 2
 num_samples_per_gpu_train = 4
 num_workers_per_gpu_train = 1
@@ -19,23 +19,34 @@ model = dict(
     type='EncoderDecoder',
     data_preprocessor=dict(size=crop_size),
     backbone=dict(
-        type='ViTEVA02WithXAttn',
-        arch='l',
-        img_size=224,
+        type='EVA02',
+        embed_dim=1024,
+        depth=24,
+        num_heads=16,
+        mlp_ratio=4*2/3,
+
+        img_size=crop_size[0],
+        in_chans=3,
         patch_size=14,
-        xattn=True,
-        sub_ln=True,
-        final_norm=False,
         out_indices=[9,14,19,23],
-        norm_cfg=dict(
-            type='LN',
-            eps=1e-06,
-        ),
-        out_type='featmap',
+
+        qkv_bias=True,
+        drop_path_rate=0.2,
+        use_abs_pos_emb=True, 
+        use_rel_pos_bias=False, 
+        use_shared_rel_pos_bias=False,
+        
+        subln=True,
+        xattn=True,
+        naiveswiglu=True,
+        rope=True,
+        pt_hw_seq_len=16,
+        intp_freq=True,
+
         init_cfg=dict(
             type='Pretrained',
             checkpoint=pretrained,
-            prefix='backbone.',
+            prefix='visual.',
         ),
     ),
     test_cfg=dict(mode='slide', crop_size=crop_size, stride=stride_size)
