@@ -1,5 +1,5 @@
 iterations = 1000           # number of batches used in training
-val_interval = 250          # interval (number of iterations) for evaluation and checkpointing
+val_interval = 500          # interval (number of iterations) for evaluation and checkpointing
 
 # optimizer
 embed_multi = dict(lr_mult=1.0, decay_mult=0.0)
@@ -26,7 +26,7 @@ default_hooks = dict(
     timer=dict(type='IterTimerHook'),
     logger=dict(type='LoggerHook', interval=50, log_metric_by_epoch=False),
     param_scheduler=dict(type='ParamSchedulerHook'),
-    checkpoint=dict(type='CheckpointHook', by_epoch=False, interval=val_interval, save_best='mIoU'),
+    checkpoint=dict(type='CheckpointHook', by_epoch=False, interval=val_interval, save_last=True, published_keys=['meta', 'state_dict'], max_keep_ckpts=1),
     sampler_seed=dict(type='DistSamplerSeedHook'),
     visualization=dict(type='SegVisualizationHook')
 )

@@ -47,5 +47,5 @@ val_evaluator = dict(
     type='CityscapesMetric',
     format_only=True,
     keep_results=True,
-    output_dir='work_dirs/format_results')
+    output_dir='work_dirs/cityscapes_testset_results')
 test_evaluator = val_evaluator
