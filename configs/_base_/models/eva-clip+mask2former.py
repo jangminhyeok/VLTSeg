@@ -1,4 +1,5 @@
 num_classes = 19
+pretrained = '/work/kuehl/checkpoints/EVA02_CLIP_L_psz14_s4B.pt'
 
 data_preprocessor = dict(
     type='SegDataPreProcessor',
@@ -13,7 +14,37 @@ data_preprocessor = dict(
 model = dict(
     type='EncoderDecoder',
     data_preprocessor=data_preprocessor,
-    backbone=dict(), # This is added in the final config
+    backbone=dict(
+        type='EVA02',
+        embed_dim=1024,
+        depth=24,
+        num_heads=16,
+        mlp_ratio=4*2/3,
+
+        img_size=512, # This is overwritten in the final config
+        in_chans=3,
+        patch_size=14,
+        out_indices=[9,14,19,23],
+
+        qkv_bias=True,
+        drop_path_rate=0.15,
+        use_abs_pos_emb=True, 
+        use_rel_pos_bias=False, 
+        use_shared_rel_pos_bias=False,
+        
+        subln=True,
+        xattn=True,
+        naiveswiglu=True,
+        rope=True,
+        pt_hw_seq_len=16,
+        intp_freq=True,
+
+        init_cfg=dict(
+            type='Pretrained',
+            checkpoint=pretrained,
+            prefix='visual.',
+        ),
+    ),
     decode_head=dict(
         type='Mask2FormerHead',
         in_channels=[1024, 1024, 1024, 1024],
