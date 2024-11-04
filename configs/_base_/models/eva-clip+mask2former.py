@@ -27,7 +27,7 @@ model = dict(
         out_indices=[9,14,19,23],
 
         qkv_bias=True,
-        drop_path_rate=0.15,
+        drop_path_rate=0.20, # This might be overwritten in the final config
         use_abs_pos_emb=True, 
         use_rel_pos_bias=False, 
         use_shared_rel_pos_bias=False,
