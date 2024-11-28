@@ -1,3 +1,8 @@
+# Obtained from: https://github.com/baaivision/EVA
+# Modified primarily in three ways
+#   - made compatible with mmsegmentation 1.x
+#   - removed dependency on apex
+#   - added a patch size 14 case for the FPN
 # --------------------------------------------------------
 # BEIT: BERT Pre-Training of Image Transformers (https://arxiv.org/abs/2106.08254)
 # Github source: https://github.com/microsoft/unilm/tree/master/beit

@@ -1,3 +1,5 @@
+# Obtained from: https://github.com/open-mmlab/mmsegmentation
+# ---------------------------------------------------------------
 # Copyright (c) OpenMMLab. All rights reserved.
 import argparse
 import logging

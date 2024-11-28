@@ -1,4 +1,3 @@
-# Copyright (c) OpenMMLab. All rights reserved.
 from mmseg.registry import DATASETS
 from mmseg.datasets import CityscapesDataset
 
