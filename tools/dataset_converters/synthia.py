@@ -62,7 +62,7 @@ def convert_to_train_id(file):
 def parse_args():
     parser = argparse.ArgumentParser(
         description='Convert SYNTHIA annotations to TrainIds')
-    parser.add_argument('synthia_path', help='gta data path')
+    parser.add_argument('synthia_path', help='synthia data path')
     parser.add_argument('--gt-dir', default='GT/LABELS', type=str)
     parser.add_argument('-o', '--out-dir', help='output path')
     parser.add_argument(
