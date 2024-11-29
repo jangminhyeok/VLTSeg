@@ -1,5 +1,5 @@
 num_classes = 19
-pretrained = '/work/kuehl/checkpoints/EVA02_CLIP_L_psz14_s4B.pt'
+pretrained = 'checkpoints/EVA02_CLIP_L_psz14_s4B.pt'
 
 data_preprocessor = dict(
     type='SegDataPreProcessor',
@@ -46,7 +46,7 @@ model = dict(
         ),
     ),
     decode_head=dict(
-        type='Mask2FormerHead',
+        type='Mask2FormerHeadFixed',
         in_channels=[1024, 1024, 1024, 1024],
         strides=[4, 8, 16, 32],
         feat_channels=256,
