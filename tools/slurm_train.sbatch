@@ -3,11 +3,10 @@
 #SBATCH --gres=gpu:nvidia_a100-sxm4-80gb:2
 #SBATCH --mem=100g
 #SBATCH --time=100:00:00
-#SBATCH --partition=ggo
 
-source /PATH/TO/HOME/.bashrc    # to access your conda
-conda activate vltseg           # prepare this virtual environment as described in the README
-cd /PATH/TO/REPO                # ending in "/VLTSeg"
+source /HOME/.bashrc        # to access your conda
+conda activate vltseg       # prepare this virtual environment as described in the README
+cd /PROJECTS/VLTSeg
 
 CONFIG="configs/mask2former_evaclip_2xb8_5k_gta2cityscapes.py"
 NUM_GPUS=2

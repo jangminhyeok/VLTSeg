@@ -118,7 +118,61 @@ python /PROJECTS/VLTSeg/tools/dataset_converters/mapillary.py /DATA/mapillary/va
 
 ## Training & Testing the Model
 
-[TODO: Show example usage of both the direct dist_train.sh utility and the slurm script]
+### A Training Most Simple
+
+Training the model is simple, once you have activated the virtual environment and set your working directory to the root of the repo:
+
+```
+conda activate vltseg
+cd /PROJECTS/VLTSeg
+sh tools/dist_train.sh [CONFIG] [NUM_GPUS] --work-dir [WORK_DIR]
+```
+
+Replace `[CONFIG]` by one of the configs located at the top level under [`configs`](configs). Each of these inherits from several of the files in [`configs/_base_`](configs/_base_). Making your own config is as simple as copying an existing config and changing either the key `_base_` or one of the few others at the top of the file.
+
+For example, if we wanted to train for 5,000 iterations, at a batch size of 16, on 2 GPUs, on the GTA dataset, validating on the Cityscapes dataset, we would run
+
+```
+sh tools/dist_train.sh configs/mask2former_evaclip_2xb8_5k_gta2cityscapes.py 2 --work-dir /WORK_DIR
+```
+
+### Pretraining with a Frozen Backbone
+
+While this is not part of the original paper, we have occasionally observed slightly better results in our own experiments by first pretraining for 1,000 iterations with all backbone weights frozen. To do so, use [`configs/_base_/schedules/schedule_1k_frozen.py`](configs/_base_/schedules/schedule_1k_frozen.py) like so:
+
+```
+sh tools/dist_train.sh configs/mask2former_evaclip_2xb8_1k_frozen_gta2cityscapes.py 2 --work-dir /WORK_DIR_PRETRAIN
+```
+
+Once the pretraining has concluded, you can start the actual training from that checkpoint by adding `--cfg-options load_from=[CHECKPOINT]` like this:
+
+```
+sh tools/dist_train.sh configs/mask2former_evaclip_2xb8_5k_gta2cityscapes.py 2 --work-dir /WORK_DIR --cfg-options load_from="/WORK_DIR_PRETRAIN/iter_1000-????????.pth"
+```
+
+### Testing a Trained Model
+
+Testing functions much the same as training, except specifying a checkpoint is no longer optional:
+
+```
+sh tools/dist_test.sh [CONFIG] [CHECKPOINT] [NUM_GPUS] --work-dir [WORK_DIR]
+```
+
+For example, if we wanted to evaluate how well our earlier model generalizes to ACDC, we would run
+
+```
+sh tools/dist_test.sh configs/mask2former_evaclip_2xb8_5k_gta2acdc.py /WORK_DIR/iter_5000-????????.pth 2 --work-dir /WORK_DIR
+```
+
+If you want to employ test time augmentations, simply add the flag `--tta` at the end of the command. All configs come with multi-scale evaluation and a (not so random) random fip by default. This option was used for the Cityscapes and ACDC test set benchmarks.
+
+### Training and Testing on a Slurm Cluster
+
+If you are working on a computing cluster running Slurm, we have provided examples of `.sbatch` scripts, which contain all the same options discussed above, namely [`tools/slurm_train.sbatch`](tools/slurm_train.sbatch) and [`tools/slurm_test.sbatch`](tools/slurm_test.sbatch). In that case you would simply run
+
+```
+sbatch slurm_train.sbatch
+```
 
 ## Checkpoints
 
