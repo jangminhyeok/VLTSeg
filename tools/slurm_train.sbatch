@@ -14,7 +14,7 @@ NUM_GPUS=2
 WORK_DIR="/PATH/TO/LARGE/PARTITION/WORK_DIR"
 CHECKPOINT="/PATH/TO/LARGE/PARTITION/WORK_DIR_PRETRAIN/FILENAME.pth"
 
-sh tools/dist_train.sh $CONFIG $NUM_GPUS --work-dir $WORK_DIR --cfg-options load_from=$CHECKPOINT
+sh tools/dist_train.sh $CONFIG $NUM_GPUS --work-dir $WORK_DIR
 
 # To fine-tune from a previous checkpoint, add the parameter
 # --cfg-options load_from=$CHECKPOINT

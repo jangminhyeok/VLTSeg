@@ -25,7 +25,6 @@ model.init_weights()
 if device == 'cpu':
     model = revert_sync_batchnorm(model)
 
-
 with torch.no_grad():
     image = read_image('images/CLIP.png', mode=ImageReadMode.RGB).to(torch.float32).to(device).unsqueeze(0)
     result = model.predict(image)
