@@ -1,0 +1,4 @@
+cityscapesscripts==2.2.4
+ftfy==6.2.3
+regex==2024.9.11
+timm==1.0.9  
