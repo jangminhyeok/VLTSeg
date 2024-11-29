@@ -2,7 +2,7 @@
 
 **[ACCV2024 Paper](https://arxiv.org/pdf/2312.02021v3)**
 
-This repo implements [VLTSeg](https://vltseg.github.io/) using the open-source framework [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). Note that we are not the authors of the paper. This reimplementation merely aims to remedy the fact that the code for VLTSeg is not currently publically available. You can use the repo to train your own version of the model [TODO: Add link to relevant section] or use one of the pretrained checkpoints available via Hugging Face (?) [TODO: Add link to relevant section].
+This repo implements [VLTSeg](https://vltseg.github.io/) using the open-source framework [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). Note that we are not the authors of the paper. This reimplementation merely aims to remedy the fact that the code for VLTSeg is not currently publically available. You can use the repo to [train your own version of the model](#training--testing-the-model) or use one of the [pretrained checkpoints](#checkpoints) available via Zenodo.
 
 ## Setting Up Your Virtual Environment
 
@@ -19,8 +19,7 @@ conda activate vltseg
 
 ### Clone VLTSeg
 cd /PROJECTS
-# [TODO: Change URL to GitHub version]
-git clone https://git.tu-berlin.de/milz_at_tu-berlin/code-dev/vltseg.git VLTSeg
+git clone https://github.com/VLTSeg/VLTSeg.git VLTSeg
 
 ### Install requirements
 pip install torch==2.3.0 torchvision xformers --index-url https://download.pytorch.org/whl/cu121
@@ -166,7 +165,7 @@ sh tools/dist_test.sh configs/mask2former_evaclip_2xb8_5k_gta2acdc.py /WORK_DIR/
 
 If you want to employ test time augmentations, simply add the flag `--tta` at the end of the command. All configs come with multi-scale evaluation and a (not so random) random fip by default. This option was used for the Cityscapes and ACDC test set benchmarks.
 
-### Training and Testing on a Slurm Cluster
+### Training & Testing on a Slurm Cluster
 
 If you are working on a computing cluster running Slurm, we have provided examples of `.sbatch` scripts, which contain all the same options discussed above, namely [`tools/slurm_train.sbatch`](tools/slurm_train.sbatch) and [`tools/slurm_test.sbatch`](tools/slurm_test.sbatch). In that case you would simply run
 
