@@ -175,4 +175,23 @@ sbatch slurm_train.sbatch
 
 ## Checkpoints
 
-[TODO: Create a table with performance of various experiments and download links for the checkpoints]
+[TODO: Add download links for the checkpoints]
+
+[TODO: Finish filling out the results]
+
+| Checkpoint                                                | Iterations Trained | Batch Size | `drop_path_rate` | ACDC(val) | ACDC(test) | BDD100K(val) | Cityscapes(val) | Cityscapes(test) | Mapillary(val) |
+|:---------------------------------------------------------:|:------------------:|:----------:|:----------------:|:---------:|:----------:|:------------:|:---------------:|:----------------:|:--------------:|
+| GTA_1                                                     | 5K                 | 16         | 0.20             | 62.34     | -          | 59.56        | 65.23           | -                | 66.07          |
+| GTA_2                                                     | 1K + 5K            | 8          | 0.15             | 60.12     | -          | 60.16        | 66.69           | -                | 66.49          |
+| SYNTHIA_1                                                 | 5K                 | 16         | 0.20             | 49.88     | -          | 50.66        | 56.85           | -                | 55.96          |
+| SYNTHIA_1                                                 | 1K + 5K            | 8          | 0.15             | 49.42     | -          | 52.13        | 57.55           | -                | 55.92          |
+| ACDC_1                                                    | 20K                | 8          | 0.20             | 81.44     | -          | 65.85        | 79.51           | -                | 75.56          |
+| BDD100K_1                                                 | 20K                | 8          | 0.20             | 72.05     | -          | 71.43        | 77.74           | -                | 76.13          |
+| Cityscapes_1                                              | 20K                | 8          | 0.20             |           |      \*    |              |                 | -                |                |
+| Cityscapes_2                                              | 1K + 20K           | 8          | 0.15             | 73.92     | 77.11\*    | 65.84        | 85.60           | -                | 77.23          |
+| Mapillary+Cityscapes_1                                    | 20K + 40K          | 8          | 0.20             | -         | -          | -            | 86.30           | 86.13\*          | -              |
+| Mapillary_1                                               | 20K                | 8          | 0.20             | 74.76     | -          | 68.99        | 81.51           | -                | 84.01          |
+
+_[\*] All submissions to the ACDC and Cityscapes test set benchmarks used test time augmentations, as described in Section 6.2 of the paper._
+
+When a checkpoint lists "1K + __K" iterations, it was trained for 1K iterations with a frozen backbone before the regular training. The checkpoint Mapillary+Cityscapes_1 was trained for 20K iterations on Mapillary and 40K iterations on Cityscapes, as described in Section 6.2 of the paper.
