@@ -196,4 +196,6 @@ When a checkpoint lists "1K + __K" iterations, it was trained for 1K iterations 
 
 ## License
 
-This repository is Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International Public License](https://creativecommons.org/licenses/by-nc/4.0/).
+The code in this repository is licensed under the [MIT License](https://opensource.org/license/mit).
+
+The weights in the checkpoints are licensed under a a [Creative Commons Attribution-NonCommercial 4.0 International Public License](https://creativecommons.org/licenses/by-nc/4.0/).
