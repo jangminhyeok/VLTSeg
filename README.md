@@ -193,3 +193,7 @@ sbatch slurm_train.sbatch
 _[\*] All submissions to the ACDC and Cityscapes test set benchmarks used test time augmentations, as described in Section 6.2 of the paper._
 
 When a checkpoint lists "1K + __K" iterations, it was trained for 1K iterations with a frozen backbone before the regular training. The checkpoint Mapillary+Cityscapes_1 was trained for 20K iterations on Mapillary and 40K iterations on Cityscapes, as described in Section 6.2 of the paper.
+
+## License
+
+This repository is Licensed under a [Creative Commons Attribution-NonCommercial 4.0 International Public License](https://creativecommons.org/licenses/by-nc/4.0/).
