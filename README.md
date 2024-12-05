@@ -2,7 +2,7 @@
 
 **[ACCV2024 Paper](https://arxiv.org/pdf/2312.02021v3)**
 
-This repo implements VLTSeg, the semantic segmentation model from the paper [Strong but Simple: A Baseline for Domain Generalized Dense Perception by CLIP-based Transfer Learning](https://vltseg.github.io/) using the open-source framework [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). Note that we are not the authors of the paper. This reimplementation merely aims to remedy the fact that the code for VLTSeg is not currently publically available. You can use the repo to [train your own version of the model](#training--testing-the-model) or use one of the [pretrained checkpoints](#checkpoints) available via Zenodo.
+This repo implements VLTSeg, the semantic segmentation model from the paper [Strong but Simple: A Baseline for Domain Generalized Dense Perception by CLIP-based Transfer Learning](https://vltseg.github.io/) using the open-source framework [MMSegmentation](https://github.com/open-mmlab/mmsegmentation). Note that we are not the authors of the paper. This reimplementation merely aims to remedy the fact that the code for VLTSeg is not currently publicly available. You can use the repo to [train your own version of the model](#training--testing-the-model) or use one of the [pretrained checkpoints](#checkpoints) available via Zenodo.
 
 ## Setting Up Your Virtual Environment
 
