@@ -175,20 +175,20 @@ sbatch slurm_train.sbatch
 
 ## Checkpoints
 
-[TODO: Add download links for the checkpoints]
+You can find the following checkpoints, trained on various synthetic and real world datasets, on [Zenodo](https://zenodo.org/records/14259308).
 
-| Checkpoint                                                | Iterations Trained | Batch Size | `drop_path_rate` | ACDC(val) | ACDC(test) | BDD100K(val) | Cityscapes(val) | Cityscapes(test) | Mapillary(val) |
-|:---------------------------------------------------------:|:------------------:|:----------:|:----------------:|:---------:|:----------:|:------------:|:---------------:|:----------------:|:--------------:|
-| GTA_1                                                     | 5K                 | 16         | 0.20             | 62.34     | -          | 59.56        | 65.23           | -                | 66.07          |
-| GTA_2                                                     | 1K + 5K            | 8          | 0.15             | 60.12     | -          | 60.16        | 66.69           | -                | 66.49          |
-| SYNTHIA_1                                                 | 5K                 | 16         | 0.20             | 49.88     | -          | 50.66        | 56.85           | -                | 55.96          |
-| SYNTHIA_2                                                 | 1K + 5K            | 8          | 0.15             | 49.42     | -          | 52.13        | 57.55           | -                | 55.92          |
-| ACDC_1                                                    | 20K                | 8          | 0.20             | 81.44     | -          | 65.85        | 79.51           | -                | 75.56          |
-| BDD100K_1                                                 | 20K                | 8          | 0.20             | 72.05     | -          | 71.43        | 77.74           | -                | 76.13          |
-| Cityscapes_1                                              | 20K                | 8          | 0.20             | 73.16     | 77.28\*    | 65.10        | 84.83           | -                | 76.81          |
-| Cityscapes_2                                              | 1K + 20K           | 8          | 0.15             | 73.92     | 77.11\*    | 65.84        | 85.60           | -                | 77.23          |
-| Mapillary+Cityscapes_1                                    | 20K + 40K          | 8          | 0.20             | -         | -          | -            | 86.30           | 86.13\*          | -              |
-| Mapillary_1                                               | 20K                | 8          | 0.20             | 74.76     | -          | 68.99        | 81.51           | -                | 84.01          |
+| Checkpoint                                                                                                                  | Iterations Trained | Batch Size | `drop_path_rate` | ACDC(val) | ACDC(test) | BDD100K(val) | Cityscapes(val) | Cityscapes(test) | Mapillary(val) |
+|:---------------------------------------------------------------------------------------------------------------------------:|:------------------:|:----------:|:----------------:|:---------:|:----------:|:------------:|:---------------:|:----------------:|:--------------:|
+| [GTA_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_gta_1.pth?download=1)                                   | 5K                 | 16         | 0.20             | 62.34     | -          | 59.56        | 65.23           | -                | 66.07          |
+| [GTA_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_gta_2.pth?download=1)                                   | 1K + 5K            | 8          | 0.15             | 60.12     | -          | 60.16        | 66.69           | -                | 66.49          |
+| [SYNTHIA_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_synthia_1.pth?download=1)                           | 5K                 | 16         | 0.20             | 49.88     | -          | 50.66        | 56.85           | -                | 55.96          |
+| [SYNTHIA_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_synthia_2.pth?download=1)                           | 1K + 5K            | 8          | 0.15             | 49.42     | -          | 52.13        | 57.55           | -                | 55.92          |
+| [ACDC_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_acdc_1.pth?download=1)                                 | 20K                | 8          | 0.20             | 81.44     | -          | 65.85        | 79.51           | -                | 75.56          |
+| [BDD100K_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_bdd100k_1.pth?download=1)                           | 20K                | 8          | 0.20             | 72.05     | -          | 71.43        | 77.74           | -                | 76.13          |
+| [Cityscapes_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_cityscapes_1.pth?download=1)                     | 20K                | 8          | 0.20             | 73.16     | 77.28\*    | 65.10        | 84.83           | -                | 76.81          |
+| [Cityscapes_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_cityscapes_2.pth?download=1)                     | 1K + 20K           | 8          | 0.15             | 73.92     | 77.11\*    | 65.84        | 85.60           | -                | 77.23          |
+| [Mapillary+Cityscapes_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_mapillary+cityscapes_1.pth?download=1) | 20K + 40K          | 8          | 0.20             | -         | -          | -            | 86.30           | 86.13\*          | -              |
+| [Mapillary_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_mapillary_1.pth?download=1)                       | 20K                | 8          | 0.20             | 74.76     | -          | 68.99        | 81.51           | -                | 84.01          |
 
 _[\*] All submissions to the ACDC and Cityscapes test set benchmarks used test time augmentations, as described in Section 6.2 of the paper._
 
