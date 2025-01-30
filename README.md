@@ -175,24 +175,25 @@ sbatch slurm_train.sbatch
 
 ## Checkpoints
 
-You can find the following checkpoints, trained on various synthetic and real world datasets, on [Zenodo](https://zenodo.org/records/14259308).
+You can find the following checkpoints, trained on various synthetic and real world datasets, on [Zenodo](https://zenodo.org/records/14766160).
 
 | Checkpoint                                                                                                                  | Iterations Trained | Batch Size | `drop_path_rate` | ACDC(val) | ACDC(test) | BDD100K(val) | Cityscapes(val) | Cityscapes(test) | Mapillary(val) |
 |:---------------------------------------------------------------------------------------------------------------------------:|:------------------:|:----------:|:----------------:|:---------:|:----------:|:------------:|:---------------:|:----------------:|:--------------:|
-| [GTA_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_gta_1.pth?download=1)                                   | 5K                 | 16         | 0.20             | 62.34     | -          | 59.56        | 65.23           | -                | 66.07          |
-| [GTA_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_gta_2.pth?download=1)                                   | 1K + 5K            | 8          | 0.15             | 60.12     | -          | 60.16        | 66.69           | -                | 66.49          |
-| [SYNTHIA_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_synthia_1.pth?download=1)                           | 5K                 | 16         | 0.20             | 49.88     | -          | 50.66        | 56.85           | -                | 55.96          |
-| [SYNTHIA_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_synthia_2.pth?download=1)                           | 1K + 5K            | 8          | 0.15             | 49.42     | -          | 52.13        | 57.55           | -                | 55.92          |
-| [ACDC_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_acdc_1.pth?download=1)                                 | 20K                | 8          | 0.20             | 81.44     | -          | 65.85        | 79.51           | -                | 75.56          |
-| [BDD100K_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_bdd100k_1.pth?download=1)                           | 20K                | 8          | 0.20             | 72.05     | -          | 71.43        | 77.74           | -                | 76.13          |
-| [Cityscapes_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_cityscapes_1.pth?download=1)                     | 20K                | 8          | 0.20             | 73.16     | 77.28\*    | 65.10        | 84.83           | -                | 76.81          |
-| [Cityscapes_2](https://zenodo.org/records/14259308/files/vltseg_checkpoint_cityscapes_2.pth?download=1)                     | 1K + 20K           | 8          | 0.15             | 73.92     | 77.11\*    | 65.84        | 85.60           | -                | 77.23          |
-| [Mapillary+Cityscapes_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_mapillary+cityscapes_1.pth?download=1) | 20K + 40K          | 8          | 0.20             | -         | -          | -            | 86.30           | 86.13\*          | -              |
-| [Mapillary_1](https://zenodo.org/records/14259308/files/vltseg_checkpoint_mapillary_1.pth?download=1)                       | 20K                | 8          | 0.20             | 74.76     | -          | 68.99        | 81.51           | -                | 84.01          |
+| [GTA_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_gta_1.pth?download=1)                                   | 5K                 | 16         | 0.20             | 62.34     | -          | 59.56        | 65.23           | -                | 66.07          |
+| [GTA_2](https://zenodo.org/records/14766160/files/vltseg_checkpoint_gta_2.pth?download=1)                                   | 1K + 5K            | 8          | 0.15             | 60.12     | -          | 60.16        | 66.69           | -                | 66.49          |
+| [SYNTHIA_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_synthia_1.pth?download=1)                           | 5K                 | 16         | 0.20             | 49.88     | -          | 50.66        | 56.85           | -                | 55.96          |
+| [SYNTHIA_2](https://zenodo.org/records/14766160/files/vltseg_checkpoint_synthia_2.pth?download=1)                           | 1K + 5K            | 8          | 0.15             | 49.42     | -          | 52.13        | 57.55           | -                | 55.92          |
+| [ACDC_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_acdc_1.pth?download=1)                                 | 20K                | 8          | 0.20             | 81.44     | -          | 65.85        | 79.51           | -                | 75.56          |
+| [BDD100K_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_bdd100k_1.pth?download=1)                           | 20K                | 8          | 0.20             | 72.05     | -          | 71.43        | 77.74           | -                | 76.13          |
+| [Cityscapes_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_cityscapes_1.pth?download=1)                     | 20K                | 8          | 0.20             | 73.16     | 77.28\*    | 65.10        | 84.83           | -                | 76.81          |
+| [Cityscapes_2](https://zenodo.org/records/14766160/files/vltseg_checkpoint_cityscapes_2.pth?download=1)                     | 1K + 20K           | 8          | 0.15             | 73.92     | 77.11\*    | 65.84        | 85.60           | -                | 77.23          |
+| [Mapillary+Cityscapes_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_mapillary+cityscapes_1.pth?download=1) | 20K + 40K          | 8          | 0.20             | -         | -          | -            | 86.30           | 86.13\*          | -              |
+| [Mapillary+Cityscapes_2](https://zenodo.org/records/14766160/files/vltseg_checkpoint_mapillary+cityscapes_2.pth?download=1) | 1K + 20K + 40K     | 8          | 0.15             | -         | -          | -            | 85.50           | 86.39\*          | -              |
+| [Mapillary_1](https://zenodo.org/records/14766160/files/vltseg_checkpoint_mapillary_1.pth?download=1)                       | 20K                | 8          | 0.20             | 74.76     | -          | 68.99        | 81.51           | -                | 84.01          |
 
 _[\*] All submissions to the ACDC and Cityscapes test set benchmarks used test time augmentations, as described in Section 6.2 of the paper._
 
-When a checkpoint lists "1K + __K" iterations, it was trained for 1K iterations with a frozen backbone before the regular training. The checkpoint Mapillary+Cityscapes_1 was trained for 20K iterations on Mapillary and 40K iterations on Cityscapes, as described in Section 6.2 of the paper.
+When a checkpoint lists "1K + \_\_K" iterations, it was trained for 1K iterations with a frozen backbone before the regular training. The checkpoints Mapillary+Cityscapes\_[1/2] were trained for 20K iterations on Mapillary and 40K iterations on Cityscapes, as described in Section 6.2 of the paper.
 
 ## License
 
