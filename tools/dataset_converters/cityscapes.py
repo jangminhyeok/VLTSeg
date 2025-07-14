@@ -9,13 +9,38 @@
 
 import argparse
 import json
+import os, types, multiprocessing
 import os.path as osp
+from tqdm import tqdm
 
 import mmcv
 import numpy as np
 from cityscapesscripts.preparation.json2labelImg import json2labelImg
 from PIL import Image
 
+def scandir_os(path, suffix='_polygons.json'):
+    """
+    지정한 폴더 `path`와 그 하위 폴더를 재귀적으로 탐색해
+    파일명이 `suffix`로 끝나는 모든 파일의 전체 경로를 yield한다.
+    예) '/a/b/c/test_polygons.json'
+    """
+    for root, _, files in os.walk(path):
+        for fname in files:
+            if fname.endswith(suffix):
+                yield os.path.join(root, fname)
+
+def track_progress(func, tasks):
+    """mmcv.track_progress 대체 – 단일 프로세스"""
+    return [func(t) for t in tqdm(tasks)]
+
+def track_parallel_progress(func, tasks, nproc):
+    """mmcv.track_parallel_progress 대체 – 멀티프로세스"""
+    with multiprocessing.Pool(nproc) as pool:
+        return list(tqdm(pool.imap(func, tasks), total=len(tasks)))
+
+mmcv.scandir                 = scandir_os
+mmcv.track_progress           = track_progress
+mmcv.track_parallel_progress  = track_parallel_progress
 
 def convert_json_to_label(json_file):
     label_file = json_file.replace('_polygons.json', '_labelTrainIds.png')
@@ -74,14 +99,15 @@ def main():
     args = parse_args()
     cityscapes_path = args.cityscapes_path
     out_dir = args.out_dir if args.out_dir else cityscapes_path
-    mmcv.mkdir_or_exist(out_dir)
+    os.makedirs(out_dir, exist_ok=True)
 
     gt_dir = osp.join(cityscapes_path, args.gt_dir)
 
     poly_files = []
-    for poly in mmcv.scandir(gt_dir, '_polygons.json', recursive=True):
+    for poly in mmcv.scandir(gt_dir, '_polygons.json'):
         poly_file = osp.join(gt_dir, poly)
         poly_files.append(poly_file)
+    print(len(poly_files))
 
     only_postprocessing = False
     if not only_postprocessing:
@@ -102,7 +128,7 @@ def main():
     for split in split_names:
         filenames = []
         for poly in mmcv.scandir(
-                osp.join(gt_dir, split), '_polygons.json', recursive=True):
+                osp.join(gt_dir, split), '_polygons.json'):
             filenames.append(poly.replace('_gtFine_polygons.json', ''))
         with open(osp.join(out_dir, f'{split}.txt'), 'w') as f:
             f.writelines(f + '\n' for f in filenames)
